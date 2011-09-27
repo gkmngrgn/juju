@@ -1,0 +1,1 @@
+exports.management = require './management'
