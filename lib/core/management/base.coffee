@@ -2,7 +2,7 @@ juju = require '../../juju'
 
 class exports.BaseCommand
     constructor: ->
-        hello = "hello world."
+        @help = ""
 
     get_version: ->
         version = juju.get_version()
