@@ -1,4 +1,4 @@
 #!/usr/bin/env coffee
 
 juju = require '../lib/juju'
-juju.core.management.execute_from_command_line()
+juju.core.management.execute()
