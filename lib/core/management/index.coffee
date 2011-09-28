@@ -48,5 +48,5 @@ exports.execute = ->
         else
             print_help()
     else
-        command = find_command arg
+        command = find_command command
         command.get_version()
