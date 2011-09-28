@@ -32,21 +32,30 @@ print_help = ->
     console.log response
 
 
-print_help_command = (command) ->
-    command = find_command command
-    console.log command.help
+print_help_command = (arg) ->
+    command = find_command arg
+    output = """
+        Usage: juju-admin #{ arg } #{ command.params }
+
+        #{ command.help }
+    """
+    console.log output
 
 
 exports.execute = ->
-    command = process.argv[2]
-    if not command
+    arg = process.argv[2]
+    if not arg
         print_help()
-    else if command is 'help'
+    else if arg is 'help'
         sub_command = process.argv[3]
         if sub_command
             print_help_command sub_command
         else
             print_help()
     else
-        command = find_command command
-        command.get_version()
+        command = find_command arg
+        if command.check_params()
+            command.run()
+        else
+            command.get_error_message()
+            print_help_command arg
