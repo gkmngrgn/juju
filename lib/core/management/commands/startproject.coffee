@@ -1,5 +1,3 @@
-management_base = require '../base'
+management = require '../base'
 
-class exports.Command extends management_base.BaseCommand
-    get_version: ->
-        super '1.1.2'
+class exports.Command extends management.BaseCommand

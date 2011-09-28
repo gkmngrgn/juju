@@ -1,6 +1,9 @@
+juju = require '../../juju'
+
 class exports.BaseCommand
     constructor: ->
-        console.log "hello world."
+        hello = "hello world."
 
-    get_version: (version) ->
-        console.log "version number."
+    get_version: ->
+        version = juju.get_version()
+        console.log version
