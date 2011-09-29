@@ -6,7 +6,7 @@ find_command = (command) ->
         if error.name is 'Error'
             console.log """
                 Unknown command: '#{ command }'
-                Type 'juju-admin help' for usage.
+                Type 'juju help' for usage.
             """
         else
             console.log error
@@ -22,8 +22,8 @@ print_help = ->
     commands = ("  #{c.split('.')[0]}" for c in file_list)
 
     response =  """
-        Usage: juju-admin subcommand [args]
-        Type 'juju-admin help <subcommand>' for help on a specific subcommand.
+        Usage: juju subcommand [args]
+        Type 'juju help <subcommand>' for help on a specific subcommand.
 
         Available subcommands:
 
@@ -35,7 +35,7 @@ print_help = ->
 print_help_command = (arg) ->
     command = find_command arg
     output = """
-        Usage: juju-admin #{ arg } #{ command.params }
+        Usage: juju #{ arg } #{ command.params }
 
         #{ command.help }
     """

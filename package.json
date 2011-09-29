@@ -3,7 +3,7 @@
     "description": "Coffeescript web framework inspired by Django.",
     "version": "0.0.1 pre-alpha",
     "author": "Gökmen Görgen",
-    "bin": "./bin/juju-admin",
+    "bin": "./bin/juju",
     "main": "./lib/juju",
     "engines": {
         "node": ">=0.4.0"
