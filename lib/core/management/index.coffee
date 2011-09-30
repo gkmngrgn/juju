@@ -18,7 +18,7 @@ find_command = (command) ->
 
 print_help = ->
     fs = require 'fs'
-    file_list = fs.readdirSync("./commands")
+    file_list = fs.readdirSync("#{ __dirname }/commands")
     commands = ("  #{c.split('.')[0]}" for c in file_list)
 
     response =  """
