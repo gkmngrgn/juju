@@ -57,8 +57,4 @@ exports.execute = ->
         console.log juju.get_version()
     else
         command = find_command arg
-        if command.check_params()
-            command.run()
-        else
-            command.get_error_message()
-            print_help_command arg
+        command.run()
