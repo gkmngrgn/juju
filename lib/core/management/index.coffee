@@ -1,6 +1,6 @@
 find_command = (command) ->
     try
-        command_lib = require "#{ __dirname }/commands/#{ command }"
+        command_lib = require "./commands/#{ command }"
         command = new command_lib.Command
     catch error
         if error.name is 'Error'
@@ -18,7 +18,7 @@ find_command = (command) ->
 
 print_help = ->
     fs = require 'fs'
-    file_list = fs.readdirSync("#{ __dirname }/commands")
+    file_list = fs.readdirSync("./commands")
     commands = ("  #{c.split('.')[0]}" for c in file_list)
 
     response =  """
@@ -52,6 +52,9 @@ exports.execute = ->
             print_help_command sub_command
         else
             print_help()
+    else if arg is '--version'
+        juju = require '../../juju'
+        console.log juju.get_version()
     else
         command = find_command arg
         if command.check_params()
