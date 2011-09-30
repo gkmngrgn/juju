@@ -13,5 +13,4 @@ exports.get_version = ->
     version
 
 
-require.paths.unshift __dirname
 exports.core = require './core'
