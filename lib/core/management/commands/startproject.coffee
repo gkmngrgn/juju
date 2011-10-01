@@ -1,6 +1,7 @@
-management = require '../base'
+command = require('juju').core.management.base
 
-class exports.Command extends management.BaseCommand
+
+class exports.Command extends command.BaseCommand
     constructor: ->
         @help = """
 Creates a JuJu project directory structure for the given project name in the

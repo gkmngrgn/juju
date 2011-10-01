@@ -53,8 +53,11 @@ exports.execute = ->
         else
             print_help()
     else if arg is '--version'
-        juju = require '../../juju'
+        juju = require 'juju'
         console.log juju.get_version()
     else
         command = find_command arg
         command.run()
+
+
+exports.base = require './base'

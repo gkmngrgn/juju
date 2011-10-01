@@ -1,4 +1,4 @@
-juju = require '../../juju'
+juju = require 'juju'
 
 
 class exports.BaseCommand

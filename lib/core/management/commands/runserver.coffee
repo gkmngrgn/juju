@@ -1,7 +1,7 @@
-management = require '../base'
+command = require('juju').core.management.base
 
 
-class exports.Command extends management.BaseCommand
+class exports.Command extends command.BaseCommand
     constructor: ->
         @help = "Starts default Node HTTP Server."
         @params = '[portnumber]'

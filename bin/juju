@@ -1,4 +1,4 @@
 #!/usr/bin/env coffee
 
-juju = require '../'
+juju = require 'juju'
 juju.core.management.execute()
