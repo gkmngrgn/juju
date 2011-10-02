@@ -12,7 +12,7 @@ current directory.
 
     run: ->
         fs = require 'fs'
-        params = this.get_params()
+        params = @get_params()
 
         if not params.length
             console.log 'Please define a project name.'

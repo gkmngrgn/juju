@@ -13,7 +13,7 @@ project's directory.
 
     run: ->
         fs = require 'fs'
-        params = this.get_params()
+        params = @get_params()
 
         if not params.length
             console.log 'Enter at least one application name.'

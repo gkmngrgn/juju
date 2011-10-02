@@ -8,7 +8,7 @@ class exports.Command extends command.BaseCommand
         @params_count = 1
 
     run: ->
-        params = this.get_params()
+        params = @get_params()
         if params.length
             port = params[0]
         else

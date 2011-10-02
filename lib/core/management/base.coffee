@@ -8,7 +8,7 @@ class exports.BaseCommand
         @params_count = 0
 
     check_params: ->
-        params = this.get_params()
+        params = @get_params()
         params.length is @params_count
 
     get_params: ->
