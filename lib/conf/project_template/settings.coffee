@@ -6,3 +6,7 @@ ADMINS = [
 ]
 
 MANAGERS = ADMINS
+
+INSTALLED_APPS = [
+
+]
