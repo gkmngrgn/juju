@@ -1,4 +1,5 @@
 command = require('juju').core.management.base
+urls = require('juju').urls
 connect = require 'connect'
 
 
@@ -13,14 +14,14 @@ class exports.Command extends command.BaseCommand
         if params.length
             port = params[0]
         else
-            port = '8000'
+            port = 8000
 
-        routes = connect(connect.router (app) ->
-            app.get '/', (req, res) ->
-                res.end 'hello world'
-
-            app.get '/hello', (req, res) ->
-                res.end 'world!'
+        routes = connect(
+            connect.router (app) ->
+                for url in urls.get_urls()
+                    view = new url.view()
+                    app.get url.path, (req, res) ->
+                        view.run req, res
         )
 
         try
