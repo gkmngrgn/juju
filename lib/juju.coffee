@@ -14,3 +14,6 @@ exports.get_version = ->
 
 
 exports.core = require './core'
+exports.urls = require './urls'
+exports.views = require './views'
+exports.welcome = require './welcome'
