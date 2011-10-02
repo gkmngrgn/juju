@@ -1,7 +1,7 @@
 {
     "name": "juju",
     "description": "Coffeescript web framework inspired by Django.",
-    "version": "0.0.1 pre-alpha",
+    "version": "0.0.1",
     "author": "Gökmen Görgen",
     "bin": "./bin/juju",
     "main": "./lib/juju",
@@ -9,6 +9,7 @@
         "node": ">=0.4.0"
     },
     "dependencies": {
-        "coffee-script": ">=1.1.2"
+        "coffee-script": ">=1.1.2",
+        "connect": ">=1.7.1"
     }
 }

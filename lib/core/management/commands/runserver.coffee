@@ -1,4 +1,5 @@
 command = require('juju').core.management.base
+connect = require 'connect'
 
 
 class exports.Command extends command.BaseCommand
@@ -14,16 +15,17 @@ class exports.Command extends command.BaseCommand
         else
             port = '8000'
 
-        http = require 'http'
-        fs = require 'fs'
-        path = "#{ __dirname }/../../../conf/default_templates/default.html"
-        html = fs.readFileSync(path)
-        server = http.createServer (req, res) ->
-            res.writeHead 200, { 'Content-Type': 'text/html' }
-            res.end html
+        routes = connect(connect.router (app) ->
+            app.get '/', (req, res) ->
+                res.end 'hello world'
+
+            app.get '/hello', (req, res) ->
+                res.end 'world!'
+        )
 
         try
-            server.listen port, '127.0.0.1'
+            server = connect(connect.logger(), routes)
+            server.listen(port)
             console.log """
 Server is running at http://127.0.0.1:#{ port }/
 Quit the server with CONTROL-C.
