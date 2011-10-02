@@ -1,12 +1,10 @@
-class TemplateView
-    constructor: ->
-        @template_name = ''
-
+class exports.TemplateView
     get_template_name: ->
-        @template_name = 'default' if not @template_name
-
-        "#{ __dirname }/#{ @template_name }.html"
+        @template_name = "default" if not @template_name
+        "./templates/#{ @template_name }.html"
 
     run: (req, res) ->
         fs = require 'fs'
-        template = fs.readFileSync(@get_template_name())
+        context = fs.readFileSync(@get_template_name())
+
+        res.end context
