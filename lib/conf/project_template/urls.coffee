@@ -1,6 +1,3 @@
-url = require('juju').conf.urls.url
-patterns = require('juju').conf.urls.patterns
-
-urlpatterns = patterns(
-    #url(r'^$', view=BaseIndexView, name='home'),
-)
+exports.urlpatterns = [
+    # { path: '/', view: BaseIndexView, name: 'base-index' }
+]
