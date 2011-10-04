@@ -3,7 +3,12 @@
 find_project_dir = ->
     # Later, we will update this function with
     # --path argument.
-    process.cwd()
+    pwd = process.cwd()
+    try
+        require "#{ pwd }/settings"
+        pwd
+    catch error
+        null
 
 global.PROJECT_DIR = find_project_dir()
 
