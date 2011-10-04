@@ -1,4 +1,11 @@
 #!/usr/bin/env coffee
 
+find_project_dir = ->
+    # Later, we will update this function with
+    # --path argument.
+    process.cwd()
+
+global.PROJECT_DIR = find_project_dir()
+
 juju = require 'juju'
 juju.core.management.execute()
