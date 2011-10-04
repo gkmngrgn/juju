@@ -12,19 +12,23 @@ current directory.
 
     run: ->
         fs = require 'fs'
+        path = require 'path'
         params = @get_params()
 
         if not params.length
             console.log 'Please define a project name.'
         else
             try
-                path = "#{ __dirname }/../../../conf/project_template"
+                tmp_path = "#{ __dirname }/../../../conf/project_template"
                 project_path = params[0]
 
                 fs.mkdirSync params[0], 0755
-                files = fs.readdirSync path
+                for dir in ['apps', 'logs', 'pids', 'static']
+                    fs.mkdirSync path.join(project_path, dir), 0755
+
+                files = fs.readdirSync tmp_path
                 for file in files
-                    data = fs.readFileSync "#{ path }/#{ file }"
+                    data = fs.readFileSync "#{ tmp_path }/#{ file }"
                     fs.writeFile "#{ project_path }/#{ file }", data, (err) ->
                         throw err if err
 
