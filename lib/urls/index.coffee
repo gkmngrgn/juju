@@ -1,7 +1,12 @@
 exports.get_urls = ->
-    urls = require "#{ process.cwd() }/urls"
-    if not urls.urlpatterns.length
+    urlpatterns = require("#{ global.PROJECT_DIR }/urls").urlpatterns
+    if not urlpatterns.length
         views = require('juju').welcome.views
-        [{ path: '/', view: views.WelcomeIndexView, name: 'welcome-index' }]
+        [{ path: '/', view: views.WelcomeIndexView, name: 'welcome.Index' }]
     else
-        urls.urlpatterns
+        patterns = []
+        for pattern in urlpatterns
+            [app, view] = pattern.view.split '.'
+            views = require "#{ app }/views"
+            patterns.push { path: '/', view: views[view], name: pattern.view }
+        patterns

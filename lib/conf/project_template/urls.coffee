@@ -1,3 +1,3 @@
 exports.urlpatterns = [
-    # { path: '/', view: BaseIndexView, name: 'base-index' }
+    # { path: '/', view: 'base.Index' }
 ]

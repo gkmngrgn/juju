@@ -13,6 +13,7 @@ find_project_dir = ->
 global.PROJECT_DIR = find_project_dir()
 if global.PROJECT_DIR
     require.paths.push "#{ global.PROJECT_DIR }/apps"
+require.paths.push "#{ __dirname }/../lib"
 
 juju = require 'juju'
 juju.core.management.execute()

@@ -23,7 +23,8 @@ class exports.Command extends command.BaseCommand
         routes = connect(
             connect.router (app) ->
                 for url in urls.get_urls()
-                    view = new url.view()
+                    app_name = url.name.split('.')[0]
+                    view = new url.view(app_name)
                     app.get url.path, (req, res) ->
                         view.run req, res
         )
