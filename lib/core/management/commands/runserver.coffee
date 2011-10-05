@@ -10,6 +10,10 @@ class exports.Command extends command.BaseCommand
         @params_count = 1
 
     run: ->
+        if not global.PROJECT_DIR
+            console.log 'Create a project with `startproject` at first.'
+            process.exit(1)
+
         params = @get_params()
         if params.length
             port = params[0]
