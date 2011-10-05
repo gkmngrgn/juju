@@ -11,6 +11,8 @@ find_project_dir = ->
         null
 
 global.PROJECT_DIR = find_project_dir()
+if global.PROJECT_DIR
+    require.paths.push "#{ global.PROJECT_DIR }/apps"
 
 juju = require 'juju'
 juju.core.management.execute()
