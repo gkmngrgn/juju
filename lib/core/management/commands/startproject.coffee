@@ -11,26 +11,22 @@ current directory.
         @params_count = 1
 
     run: ->
-        fs = require 'fs'
-        path = require 'path'
         params = @get_params()
 
         if not params.length
             console.log 'Please define a project name.'
-        else
-            try
-                tmp_path = "#{ __dirname }/../../../conf/project_template"
-                project_path = params[0]
+            process.exit(1)
 
-                fs.mkdirSync params[0], 0755
-                for dir in ['apps', 'logs', 'pids', 'static']
-                    fs.mkdirSync path.join(project_path, dir), 0755
+        fs = require 'fs'
+        path = require 'path'
 
-                files = fs.readdirSync tmp_path
-                for file in files
-                    data = fs.readFileSync "#{ tmp_path }/#{ file }"
-                    fs.writeFile "#{ project_path }/#{ file }", data, (err) ->
-                        throw err if err
+        try
+            src = "#{ __dirname }/../../../conf/project_template"
+            dst = params[0]
 
-            catch error
-                console.log error.message
+            command.copy_files src, dst
+            for dir in ['apps', 'logs', 'pids', 'static']
+                fs.mkdirSync path.join(dst, dir), 0755
+
+        catch error
+            console.log error.message
