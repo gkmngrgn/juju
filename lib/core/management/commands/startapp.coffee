@@ -10,7 +10,6 @@ project's directory.
         @params = '[appname]'
         @params_count = 1
 
-
     run: ->
         params = @get_params()
         if not global.PROJECT_DIR
@@ -26,6 +25,7 @@ project's directory.
                 app_name = path.join 'apps', params[0]
 
                 fs.mkdirSync app_name, 0755
+                fs.mkdirSync path.join(app_name, 'templates'), 0755
                 files = fs.readdirSync tmp_path
                 for file in files
                     data = fs.readFileSync "#{ tmp_path }/#{ file }"
