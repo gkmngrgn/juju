@@ -1,4 +1,6 @@
 #!/usr/bin/env coffee
+path = require 'path'
+
 
 find_project_dir = ->
     # Later, we will update this function with
@@ -10,7 +12,17 @@ find_project_dir = ->
     catch error
         null
 
+
+find_static_dir = ->
+    if global.PROJECT_DIR
+        path.join global.PROJECT_DIR, 'static'
+    else
+        null
+
+
 global.PROJECT_DIR = find_project_dir()
+global.STATIC_DIR = find_static_dir()
+
 if global.PROJECT_DIR
     require.paths.push "#{ global.PROJECT_DIR }/apps"
 require.paths.push "#{ __dirname }/../lib"

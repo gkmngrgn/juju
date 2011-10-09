@@ -1,6 +1,7 @@
 command = require('juju').core.management.base
 urls = require('juju').urls
 connect = require 'connect'
+path = require 'path'
 
 
 class exports.Command extends command.BaseCommand
@@ -8,6 +9,18 @@ class exports.Command extends command.BaseCommand
         @help = "Starts default Node HTTP Server."
         @params = '[portnumber]'
         @params_count = 1
+
+    static: (req, res, next) ->
+        options =
+            root: global.STATIC_DIR
+            path: req.url.replace '/static/', '/'
+            getOnly: true
+
+        req_path = path.normalize(path.join global.PROJECT_DIR, req.url)
+        if req_path[..global.STATIC_DIR.length - 1] isnt global.STATIC_DIR
+            options.root = ''
+
+        connect.static.send req, res, next, options
 
     run: ->
         if not global.PROJECT_DIR
@@ -28,9 +41,8 @@ class exports.Command extends command.BaseCommand
                     app.get url.path, (req, res) ->
                         view.run req, res
         )
-
         try
-            server = connect(connect.logger(), routes)
+            server = connect(connect.logger(), routes, @static)
             server.listen(port)
             console.log """
 Server is running at http://127.0.0.1:#{ port }/
